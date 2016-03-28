@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+    <head>
+        <meta charset="UTF-8" />
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+        {% load static %}
+        <link rel="stylesheet" type="text/css" media="all" href="{% static 'css/daterangepicker.css' %}" />
+        <script type="text/javascript" src="{% static 'js/moment.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/daterangepicker.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/d3.v3.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/tidal_utils.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/tidal_graph.js' %}"></script>
+
+        <style type="text/css">
+            .date { position: relative; }
+            .date i {
+            position: absolute; bottom: 10px; right: 24px; top: auto; cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 date">
+                    <h4 align=center>Tidal Data Option</h4>
+                    <select id="hydro_option" style="width: 100%;" >
+                        <option>Average</option>
+                        <option>Surface Layer Flow</option>
+                    </select>
+                </div>
+                <div class="col-md-4 date">
+                    <h4 align=center>Select Date Range</h4>
+                    <input align=center type="text" id="date-picker" class="form-control">
+                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                </div>
+                <div class="col-md-4 date">
+                    <h4 align=center>Tidal Generator Parameter</h4>
+                    Turbine Power Coefficient: <input type="number" id="cp" value = 0.358><br>
+                    Density of Sea Water: <input type="number" id="q" value = 1027><br>
+                    Radius of Blade: <input type="number" id="r" value = 25><br>
+                </div>
+            </div>
+            <h4 align=center>Tidal Velocity and Power Generation Plot</h4>
+            <div align=center id="plot">
+                <svg id="visualisation" width="1200" height="600"></svg>
+            </div>
+            <h4 align=center>Tidal Raw Data</h4>
+            <h5 align=center>(1 interval = 15 ÷ 1172 minutes)</h5>
+            <div>
+                <table id="data_table" width=100%>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
+
